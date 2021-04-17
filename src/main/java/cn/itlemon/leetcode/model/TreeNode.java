@@ -11,17 +11,17 @@ public class TreeNode {
     /**
      * 值
      */
-    int val;
+    public int val;
 
     /**
      * 左节点指针
      */
-    TreeNode left;
+    public TreeNode left;
 
     /**
      * 右节点指针
      */
-    TreeNode right;
+    public TreeNode right;
 
     public TreeNode(int val) {
         this.val = val;
