@@ -19,4 +19,19 @@ public class No283MoveZeroes {
         }
     }
 
+    public void moveZeroes2(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                count++;
+            } else {
+                nums[i - count] = nums[i];
+            }
+        }
+
+        for (int i = nums.length - 1; i > nums.length - 1 - count; i--) {
+            nums[i] = 0;
+        }
+    }
+
 }
