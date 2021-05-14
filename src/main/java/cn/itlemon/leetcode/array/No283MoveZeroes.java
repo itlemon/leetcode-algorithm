@@ -8,6 +8,11 @@ package cn.itlemon.leetcode.array;
  */
 public class No283MoveZeroes {
 
+    /**
+     * 一遍循环法
+     *
+     * @param nums 数组
+     */
     public void moveZeroes(int[] nums) {
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -19,6 +24,11 @@ public class No283MoveZeroes {
         }
     }
 
+    /**
+     * 统计所有的0，然后将0全部放置到数组最后
+     *
+     * @param nums 数组
+     */
     public void moveZeroes2(int[] nums) {
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
