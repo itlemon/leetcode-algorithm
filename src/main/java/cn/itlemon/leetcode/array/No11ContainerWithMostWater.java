@@ -56,5 +56,26 @@ public class No11ContainerWithMostWater {
         return max;
     }
 
+    /**
+     * 当同时遇见相等高度的时候，两个指针同时移动
+     *
+     * @param height 数组
+     * @return 最大值
+     */
+    public int maxArea4(int[] height) {
+        int max = 0, start = 0, end = height.length - 1;
+        while (start < end) {
+            max = Math.max(max, Math.min(height[start], height[end]) * (end - start));
+            if (height[start] < height[end]) {
+                start++;
+            } else if (height[start] > height[end]) {
+                end--;
+            } else {
+                start++;
+                end--;
+            }
+        }
+        return max;
+    }
 
 }
