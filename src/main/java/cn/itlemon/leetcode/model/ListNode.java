@@ -11,15 +11,22 @@ public class ListNode {
     /**
      * 值
      */
-    int val;
+    public int val;
 
     /**
      * 链表下一个指针
      */
-    ListNode next;
+    public ListNode next;
+
+    public ListNode() {}
 
     public ListNode(int val) {
         this.val = val;
         this.next = null;
+    }
+
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 }
