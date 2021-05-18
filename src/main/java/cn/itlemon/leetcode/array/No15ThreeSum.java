@@ -81,4 +81,46 @@ public class No15ThreeSum {
         return result;
     }
 
+    /**
+     * 抽象出通用方法，target=0则是No.15的问题
+     *
+     * @param nums 数组
+     * @return 列表
+     */
+    public List<List<Integer>> threeSum3(int[] nums) {
+        Arrays.sort(nums);
+        return threeSumTarget(nums, 0);
+    }
+
+    public List<List<Integer>> threeSumTarget(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        for (int k = 0; k < nums.length - 2; k++) {
+            if (nums[k] > target) {
+                break;
+            }
+            if (k > 0 && nums[k] == nums[k - 1]) {
+                continue;
+            }
+            int i = k + 1;
+            int j = nums.length - 1;
+            while (i < j) {
+                int sum = nums[k] + nums[i] + nums[j];
+                if (sum > target) {
+                    while (i < j && nums[j] == nums[--j]) {
+                    }
+                } else if (sum < target) {
+                    while (i < j && nums[i] == nums[++i]) {
+                    }
+                } else {
+                    result.add(new ArrayList<>(Arrays.asList(nums[k], nums[i], nums[j])));
+                    while (i < j && nums[j] == nums[--j]) {
+                    }
+                    while (i < j && nums[i] == nums[++i]) {
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
 }
