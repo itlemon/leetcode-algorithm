@@ -5,12 +5,14 @@ import java.util.Stack;
 import cn.itlemon.leetcode.model.ListNode;
 
 /**
+ * No.445 两数相加II https://leetcode-cn.com/problems/add-two-numbers-ii/
+ *
  * @author jiangpingping <jiangpingping@kuaishou.com>
  * Created on 2021-05-19
  */
 public class No455AddTwoNumbersII {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> stackForL1 = new Stack<>();
         Stack<Integer> stackForL2 = new Stack<>();
         Stack<Integer> stackForResult = new Stack<>();
@@ -22,6 +24,8 @@ public class No455AddTwoNumbersII {
             stackForL2.push(l2.val);
             l2 = l2.next;
         }
+        int sizeForL1 = stackForL1.size();
+        int sizeForL2 = stackForL2.size();
         // 是否进1的标识
         boolean flag = false;
         while (true) {
@@ -33,7 +37,7 @@ public class No455AddTwoNumbersII {
             if (!stackForL2.isEmpty()) {
                 itemForL2 = stackForL2.pop();
             }
-            if (itemForL1 != 0 || itemForL2 != 0) {
+            if (sizeForL1 > 0 || sizeForL2 > 0) {
                 int sum = itemForL1 + itemForL2;
                 if (flag) {
                     sum += 1;
@@ -45,17 +49,21 @@ public class No455AddTwoNumbersII {
                     stackForResult.push(sum);
                     flag = false;
                 }
+                sizeForL1--;
+                sizeForL2--;
+            } else if (flag) {
+                stackForResult.push(1);
+                flag = false;
             } else {
                 break;
             }
         }
-        ListNode head = new ListNode();
-        if (!stackForResult.isEmpty()) {
-            head.val = stackForResult.pop();
-        }
+        ListNode head = new ListNode(0);
+        ListNode temp = head;
         while (!stackForResult.isEmpty()) {
-            head.next = new ListNode(stackForResult.pop());
+            temp.next = new ListNode(stackForResult.pop());
+            temp = temp.next;
         }
-        return head;
+        return head.next;
     }
 }
