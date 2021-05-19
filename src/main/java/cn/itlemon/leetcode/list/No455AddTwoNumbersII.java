@@ -12,7 +12,7 @@ import cn.itlemon.leetcode.model.ListNode;
  */
 public class No455AddTwoNumbersII {
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> stackForL1 = new Stack<>();
         Stack<Integer> stackForL2 = new Stack<>();
         Stack<Integer> stackForResult = new Stack<>();
