@@ -25,6 +25,30 @@ public class NonSum {
     }
 
     /**
+     * 三数之和，No.15 https://leetcode-cn.com/problems/3sum/
+     *
+     * @param nums 数组
+     * @param target 目标和
+     * @return 不重复的数组
+     */
+    public List<List<Integer>> threeSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        return threeSumTarget(nums, 0, 0);
+    }
+
+    /**
+     * 四数之和问题：No.18 https://leetcode-cn.com/problems/4sum/
+     *
+     * @param nums 数组
+     * @param target 目标和
+     * @return 不重复的数组
+     */
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        return fourSumTarget(nums, 0, target);
+    }
+
+    /**
      * 两数之和公式
      *
      * @param nums 数组
@@ -39,20 +63,16 @@ public class NonSum {
         while (lo < hi) {
             int sum = nums[lo] + nums[hi];
             if (sum < target) {
-                while (lo < hi && nums[lo] == nums[lo + 1]) {
-                    lo++;
+                while (lo < hi && nums[lo] == nums[++lo]) {
                 }
             } else if (sum > target) {
-                while (lo < hi && nums[hi] == nums[hi - 1]) {
-                    hi--;
+                while (lo < hi && nums[hi] == nums[--hi]) {
                 }
             } else {
                 result.add(new ArrayList<>(Arrays.asList(nums[lo], nums[hi])));
-                while (lo < hi && nums[lo] == nums[lo + 1]) {
-                    lo++;
+                while (lo < hi && nums[lo] == nums[++lo]) {
                 }
-                while (lo < hi && nums[hi] == nums[hi - 1]) {
-                    hi--;
+                while (lo < hi && nums[hi] == nums[--hi]) {
                 }
             }
         }
@@ -61,28 +81,51 @@ public class NonSum {
 
 
     /**
-     * 三数之和问题：其实就是两数之和的延伸，穷举第一个数，后面两个数之和就是两数之问题
+     * 三数之和公式：其实就是两数之和的延伸，穷举第一个数，后面两个数之和就是两数之问题
      *
      * @param nums 数组
+     * @param start 开始指针
      * @param target 目标和
      * @return 不重复的数组
      */
-    public List<List<Integer>> threeSumTarget(int[] nums, int target) {
+    private List<List<Integer>> threeSumTarget(int[] nums, int start, int target) {
         List<List<Integer>> result = new ArrayList<>();
         int size = nums.length;
-        int start = 0;
-        for (int i = 0; i < nums.length; i++) {
-            List<List<Integer>> lists = twoSumTarget(nums, start + 1, target - nums[start]);
+        for (int i = start; i < size; i++) {
+            List<List<Integer>> lists = twoSumTarget(nums, i + 1, target - nums[i]);
             for (List<Integer> list : lists) {
-                list.add(nums[start]);
+                list.add(nums[i]);
                 result.add(list);
             }
-            while (start < size - 1 && nums[start] == nums[start + 1]) {
-                start++;
+            while (i < size - 1 && nums[i] == nums[i + 1]) {
+                i++;
             }
         }
         return result;
     }
 
+    /**
+     * 四数之和公式
+     *
+     * @param nums 数组
+     * @param start 开始指针
+     * @param target 目标和
+     * @return 不重复的数组
+     */
+    private List<List<Integer>> fourSumTarget(int[] nums, int start, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        int size = nums.length;
+        for (int i = start; i < size; i++) {
+            List<List<Integer>> lists = threeSumTarget(nums, i + 1, target - nums[i]);
+            for (List<Integer> list : lists) {
+                list.add(nums[i]);
+                result.add(list);
+            }
+            while (i < size - 1 && nums[i] == nums[i + 1]) {
+                i++;
+            }
+        }
+        return result;
+    }
 
 }
