@@ -3,7 +3,7 @@ package cn.itlemon.leetcode.array;
 /**
  * 剑指 Offer 57. 和为s的两个数字 https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-18
  */
 public class Offer57TwoSum {

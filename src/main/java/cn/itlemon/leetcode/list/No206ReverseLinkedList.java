@@ -5,7 +5,7 @@ import cn.itlemon.leetcode.model.ListNode;
 /**
  * No.206 反转链表 https://leetcode-cn.com/problems/reverse-linked-list/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-20
  */
 public class No206ReverseLinkedList {

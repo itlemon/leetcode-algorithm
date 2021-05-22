@@ -7,7 +7,7 @@ import cn.itlemon.leetcode.model.ListNode;
 /**
  * No.445 两数相加II https://leetcode-cn.com/problems/add-two-numbers-ii/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-19
  */
 public class No455AddTwoNumbersII {

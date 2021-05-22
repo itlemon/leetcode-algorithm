@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * No.n nSum问题 发散自2Sum、3Sum以及nSum问题
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-21
  */
 public class NonSum {

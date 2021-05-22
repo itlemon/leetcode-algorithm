@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * No.18 四数之和 https://leetcode-cn.com/problems/4sum/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-17
  */
 public class No18FourSum {

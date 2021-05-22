@@ -3,7 +3,7 @@ package cn.itlemon.leetcode.array;
 /**
  * No.283 移动零 https://leetcode-cn.com/problems/move-zeroes/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-13
  */
 public class No283MoveZeroes {
