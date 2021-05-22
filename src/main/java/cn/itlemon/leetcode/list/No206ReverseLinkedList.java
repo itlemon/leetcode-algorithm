@@ -1,5 +1,7 @@
 package cn.itlemon.leetcode.list;
 
+import java.util.Stack;
+
 import cn.itlemon.leetcode.model.ListNode;
 
 /**
@@ -35,7 +37,23 @@ public class No206ReverseLinkedList {
      * @return 反转后的链表
      */
     public ListNode reverseList2(ListNode head) {
-        return null;
+        Stack<ListNode> stack = new Stack<>();
+        ListNode curr = head;
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.next;
+        }
+        ListNode result = new ListNode();
+        ListNode node = result;
+        while (!stack.isEmpty()) {
+            node.next = stack.pop();
+            if (!stack.isEmpty()) {
+                node = node.next;
+            } else {
+                node.next.next = null;
+            }
+        }
+        return result.next;
     }
 
 }
