@@ -11,7 +11,7 @@ import cn.itlemon.leetcode.model.ListNode;
 public class No2AddTwoNumbers {
 
     /**
-     * 两个链表数值想加
+     * 两个链表数值想加，时间复杂度：O(n)
      *
      * @param l1 链表1
      * @param l2 链表2
