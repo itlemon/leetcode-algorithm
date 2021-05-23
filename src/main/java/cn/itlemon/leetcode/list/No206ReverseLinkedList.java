@@ -56,4 +56,20 @@ public class No206ReverseLinkedList {
         return result.next;
     }
 
+    /**
+     * 递归法
+     *
+     * @param head 头节点
+     * @return 反转后的链表
+     */
+    public ListNode reverseList3(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode last = reverseList3(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
+    }
+
 }
