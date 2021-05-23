@@ -1,5 +1,6 @@
 package cn.itlemon.leetcode.list;
 
+import java.util.List;
 import java.util.Stack;
 
 import cn.itlemon.leetcode.model.ListNode;
@@ -12,6 +13,13 @@ import cn.itlemon.leetcode.model.ListNode;
  */
 public class No455AddTwoNumbersII {
 
+    /**
+     * 使用栈的方式做
+     *
+     * @param l1 链表1
+     * @param l2 链表2
+     * @return 链表
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> stackForL1 = new Stack<>();
         Stack<Integer> stackForL2 = new Stack<>();
@@ -65,5 +73,37 @@ public class No455AddTwoNumbersII {
             temp = temp.next;
         }
         return head.next;
+    }
+
+    /**
+     * 使用栈的方式做
+     *
+     * @param l1 链表1
+     * @param l2 链表2
+     * @return 链表
+     */
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        Stack<Integer> stackForL1 = new Stack<>();
+        Stack<Integer> stackForL2 = new Stack<>();
+        while (l1 != null) {
+            stackForL1.push(l1.val);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            stackForL2.push(l2.val);
+            l2 = l2.next;
+        }
+        ListNode head = null;
+        int carry = 0;
+        while (!stackForL1.isEmpty() || !stackForL2.isEmpty() || carry > 0) {
+            int num1 = stackForL1.isEmpty() ? 0 : stackForL1.pop();
+            int num2 = stackForL2.isEmpty() ? 0 : stackForL2.pop();
+            int sum = num1 + num2 + carry;
+            ListNode curr = new ListNode(sum % 10);
+            curr.next = head;
+            head = curr;
+            carry = sum / 10;
+        }
+        return head;
     }
 }

@@ -20,7 +20,7 @@ public class No2AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
         ListNode head = null, tail = null;
-        while (l1 != null || l2 != null) {
+        while (l1 != null || l2 != null || carry > 0) {
             int num1 = l1 != null ? l1.val : 0;
             int num2 = l2 != null ? l2.val : 0;
             int sum = num1 + num2 + carry;
@@ -37,9 +37,6 @@ public class No2AddTwoNumbers {
             if (l2 != null) {
                 l2 = l2.next;
             }
-        }
-        if (carry > 0) {
-            tail.next = new ListNode(carry);
         }
         return head;
     }
