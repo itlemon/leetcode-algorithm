@@ -3,7 +3,7 @@ package cn.itlemon.leetcode.list;
 import cn.itlemon.leetcode.model.ListNode;
 
 /**
- * 反转链表系列：使用递归方法来解决链表反转问题
+ * 反转链表系列：使用递归方法（迭代法）来解决链表反转问题
  *
  * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-23
@@ -24,6 +24,24 @@ public class No1ReverseLinkedListSeries {
         head.next.next = head;
         head.next = null;
         return last;
+    }
+
+    /**
+     * 迭代法反转整个链表
+     *
+     * @param head 头节点
+     * @return 反转后的链表
+     */
+    public ListNode reverseList2(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 
     /**
@@ -69,6 +87,52 @@ public class No1ReverseLinkedListSeries {
         }
         head.next = reverseBetweenList(head.next, m - 1, n - 1);
         return head;
+    }
+
+    /**
+     * No.92 反转链表 II https://leetcode-cn.com/problems/reverse-linked-list-ii/
+     * 使用迭代法来反转指定区间的链表
+     *
+     * @param head 头节点
+     * @param m m，开始节点索引
+     * @param n n，结束节点索引
+     * @return 反转后的链表
+     */
+    public ListNode reverseBetweenList2(ListNode head, int m, int n) {
+        // 使用一个虚拟节点来作为整个链表的头节点
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+
+        // 第一步：通过for循环的方式找到需要反转链表片段的前一个节点
+        ListNode prev = dummyNode;
+        for (int i = 0; i < m - 1; i++) {
+            prev = prev.next;
+        }
+
+        // 第二步：找到反转片段的头节点
+        ListNode leftNode = prev.next;
+
+        // 第三步：通过for循环的方式找到需要反转链表片段的尾结点
+        ListNode rightNode = leftNode;
+        for (int i = 0; i < n - m; i++) {
+            rightNode = rightNode.next;
+        }
+
+        // 第四步：记录后继节点
+        ListNode successorNode = rightNode.next;
+
+        // 第四步：截断链表片段
+        rightNode.next = null;
+        prev.next = null;
+
+        // 第五步：反转链表
+        reverseList2(leftNode);
+
+        // 第六步：拼接链表
+        prev.next = rightNode;
+        leftNode.next = successorNode;
+
+        return dummyNode.next;
     }
 
 }
