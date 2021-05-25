@@ -14,6 +14,18 @@ public class No24SwapNodesInPairs {
         return reverseKGroup(head, 2);
     }
 
+    public ListNode swapPairs2(ListNode head) {
+        // 终止条件
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // 反转当前的节点
+        ListNode next = head.next;
+        head.next = swapPairs2(next.next);
+        next.next = head;
+        return next;
+    }
+
     /**
      * 以K个节点为一组反转链表，不足K个的保持原有
      *
