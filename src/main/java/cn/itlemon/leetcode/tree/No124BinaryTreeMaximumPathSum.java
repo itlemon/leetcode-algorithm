@@ -30,4 +30,18 @@ public class No124BinaryTreeMaximumPathSum {
 
     }
 
+    public int maxPathSum2(TreeNode root) {
+        // 终止条件
+        if (root == null) {
+            return 0;
+        }
+        // 分别求左右最大路径和
+        int left = Math.max(0, maxPathSum2(root.left));
+        int right = Math.max(0, maxPathSum2(root.right));
+
+        // 返回结果，对于某左右分支最大路径和小于0，那么直接剪枝
+        ans = Math.max(ans, left + right + root.val);
+        return ans;
+    }
+
 }
