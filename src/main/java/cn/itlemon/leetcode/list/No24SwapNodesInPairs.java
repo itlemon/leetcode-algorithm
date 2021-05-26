@@ -14,6 +14,12 @@ public class No24SwapNodesInPairs {
         return reverseKGroup(head, 2);
     }
 
+    /**
+     * 递归法：O(n)
+     *
+     * @param head 头节点
+     * @return 反转后的链表
+     */
     public ListNode swapPairs2(ListNode head) {
         // 终止条件
         if (head == null || head.next == null) {
