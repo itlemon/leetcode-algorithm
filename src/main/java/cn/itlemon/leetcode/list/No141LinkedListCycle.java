@@ -1,7 +1,6 @@
 package cn.itlemon.leetcode.list;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import cn.itlemon.leetcode.model.ListNode;
