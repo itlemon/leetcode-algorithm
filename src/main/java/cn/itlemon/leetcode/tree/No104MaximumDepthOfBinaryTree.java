@@ -5,7 +5,7 @@ import cn.itlemon.leetcode.model.TreeNode;
 /**
  * No.104 二叉树的最大深度 https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-26
  */
 public class No104MaximumDepthOfBinaryTree {

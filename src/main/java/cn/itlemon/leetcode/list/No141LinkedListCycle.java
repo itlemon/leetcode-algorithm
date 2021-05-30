@@ -8,7 +8,7 @@ import cn.itlemon.leetcode.model.ListNode;
 /**
  * No.141 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-27
  */
 public class No141LinkedListCycle {
