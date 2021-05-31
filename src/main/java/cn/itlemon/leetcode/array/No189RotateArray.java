@@ -25,6 +25,11 @@ public class No189RotateArray {
         }
     }
 
+    /**
+     * 数组反转：O(n)
+     * @param nums 数组
+     * @param k K值
+     */
     public void rotate2(int[] nums, int k) {
         k %= nums.length;
         // 全局反转
