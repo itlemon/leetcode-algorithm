@@ -8,6 +8,12 @@ package cn.itlemon.leetcode.array;
  */
 public class No26RemoveDuplicatesFromSortedArray {
 
+    /**
+     * 迭代法：O(n)
+     *
+     * @param nums 数组
+     * @return 不重复数组长度
+     */
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
