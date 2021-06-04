@@ -5,7 +5,7 @@ import cn.itlemon.leetcode.model.ListNode;
 /**
  * No.25 K 个一组翻转链表 https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
  *
- * @author jiangpingping <jiangpingping@kuaishou.com>
+ * @author itlemon <lemon_jiang@aliyun.com>
  * Created on 2021-05-26
  */
 public class No25ReverseNodesInKGroup {
