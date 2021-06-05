@@ -10,8 +10,15 @@ import cn.itlemon.leetcode.model.ListNode;
  */
 public class No61RotateList {
 
+    /**
+     * 迭代法：O(n)
+     *
+     * @param head 头节点
+     * @param k 旋转个数
+     * @return 旋转后的链表
+     */
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0) {
+        if (head == null || head.next == null || k == 0) {
             return head;
         }
         int length = 0;
