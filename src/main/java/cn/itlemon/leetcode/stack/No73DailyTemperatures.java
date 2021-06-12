@@ -23,7 +23,9 @@ public class No73DailyTemperatures {
             while (!stack.isEmpty() && temperatures[i] >= temperatures[stack.peek()]) {
                 stack.pop();
             }
+            // 求取距离就是两索引的差
             result[i] = stack.isEmpty() ? 0 : stack.peek() - i;
+            // 存储当前元素的索引
             stack.push(i);
         }
         return result;
