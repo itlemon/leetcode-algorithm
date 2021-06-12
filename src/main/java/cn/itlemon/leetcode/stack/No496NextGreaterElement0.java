@@ -32,4 +32,28 @@ public class No496NextGreaterElement0 {
         return result;
     }
 
+    /**
+     * 暴力解法：O(n^2)
+     *
+     * @param nums 数组
+     * @return 输出数组
+     */
+    public int[] nextGreaterElement2(int[] nums) {
+        int[] result = new int[nums.length];
+        // 遍历到倒数第二个元素即可，最后一个元素直接赋值为-1
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] > nums[i]) {
+                    result[i] = nums[j];
+                    break;
+                }
+                if (j == nums.length - 1) {
+                    result[i] = -1;
+                }
+            }
+        }
+        result[nums.length - 1] = -1;
+        return result;
+    }
+
 }
