@@ -11,7 +11,7 @@ import java.util.Stack;
 public class No503NextGreaterElement2 {
 
     /**
-     * 环装数组常用的做法就是就是使用模的形式来模拟数组有环，实际是没有增加任何空间
+     * 环状数组常用的做法就是就是使用模的形式来模拟数组有环，实际是没有增加任何空间
      *
      * @param nums 数组
      * @return 数组
