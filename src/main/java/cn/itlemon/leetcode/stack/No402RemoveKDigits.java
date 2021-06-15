@@ -39,7 +39,7 @@ public class No402RemoveKDigits {
             stack.pop();
             k--;
         }
-        return stack.size() == 0 ? "0" : stack2String(stack);
+        return stack.isEmpty() ? "0" : stack2String(stack);
     }
 
     /**
