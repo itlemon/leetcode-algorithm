@@ -13,7 +13,7 @@ public class No73DailyTemperatures {
     /**
      * 单调栈：O(n)
      *
-     * @param temperatures 温度数组
+     * @param temperatures 温度 数组
      * @return 数组
      */
     public int[] dailyTemperatures(int[] temperatures) {
