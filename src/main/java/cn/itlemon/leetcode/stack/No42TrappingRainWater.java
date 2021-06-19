@@ -31,6 +31,7 @@ public class No42TrappingRainWater {
                 if (stack.isEmpty()) {
                     break;
                 }
+                // 获取左边界需要使用peek，而不能使用pop，这是因为需要一层一层计算雨水面积
                 int leftIndex = stack.peek();
                 int currentHeight = Math.min(height[leftIndex], height[i]) - height[currentIndex];
                 rainWaterArea += currentHeight * (i - leftIndex - 1);
