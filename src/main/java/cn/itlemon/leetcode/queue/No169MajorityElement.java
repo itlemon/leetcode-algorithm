@@ -1,5 +1,6 @@
 package cn.itlemon.leetcode.queue;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 public class No169MajorityElement {
 
     /**
-     * 求众数
+     * 求众数，使用Map进行计数：O(n)
      *
      * @param nums 数组
      * @return 众数
@@ -32,6 +33,15 @@ public class No169MajorityElement {
             }
         }
         return 0;
+    }
+
+    public int majorityElement2(int[] nums) {
+        // 处理特殊情况
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
     }
 
 }
