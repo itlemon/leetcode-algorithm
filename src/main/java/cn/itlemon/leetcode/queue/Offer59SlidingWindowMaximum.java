@@ -1,8 +1,8 @@
 package cn.itlemon.leetcode.queue;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * 剑指 Offer 59 - I. 滑动窗口的最大值 https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/
@@ -12,20 +12,32 @@ import java.util.stream.IntStream;
  */
 public class Offer59SlidingWindowMaximum {
 
+    /**
+     * 滑动窗口
+     *
+     * @param nums 数组
+     * @param k k值
+     * @return 最大值组成的数组
+     */
     public int[] maxSlidingWindow(int[] nums, int k) {
         MonotonicQueue monotonicQueue = new MonotonicQueue();
-        List<Integer> result = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
             if (i < k - 1) {
                 monotonicQueue.push(nums[i]);
             } else {
                 monotonicQueue.push(nums[i]);
-                result.add(monotonicQueue.max());
+                tempList.add(monotonicQueue.max());
                 monotonicQueue.pop(nums[i - k + 1]);
             }
         }
         // 将List转换成数组
+        int[] result = new int[tempList.size()];
+        for (int i = 0; i < tempList.size(); i++) {
+            result[i] = tempList.get(i);
+        }
+        return result;
     }
 
     /**
@@ -33,13 +45,18 @@ public class Offer59SlidingWindowMaximum {
      */
     class MonotonicQueue {
 
+        LinkedList<Integer> queue = new LinkedList<>();
+
         /**
          * 向队尾添加元素
          *
          * @param n 元素
          */
         public void push(int n) {
-
+            while (!queue.isEmpty() && queue.getLast() < n) {
+                queue.pollLast();
+            }
+            queue.addLast(n);
         }
 
         /**
@@ -48,7 +65,7 @@ public class Offer59SlidingWindowMaximum {
          * @return 最大值
          */
         public int max() {
-            return 0;
+            return queue.getFirst();
         }
 
         /**
@@ -57,7 +74,9 @@ public class Offer59SlidingWindowMaximum {
          * @param n 指定值
          */
         public void pop(int n) {
-
+            if (n == queue.getFirst()) {
+                queue.pollFirst();
+            }
         }
     }
 
