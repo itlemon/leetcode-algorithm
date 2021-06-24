@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * No.49 字母异位词分组 https://leetcode-cn.com/problems/group-anagrams/
@@ -23,6 +24,14 @@ public class No49GroupAnagrams {
             list.add(str);
         }
         return new ArrayList<>(container.values());
+    }
+
+    public List<List<String>> groupAnagrams2(String[] strs) {
+        return new ArrayList<>(Arrays.stream(strs).collect(Collectors.groupingBy(str -> {
+            char[] array = str.toCharArray();
+            Arrays.sort(array);
+            return new String(array);
+        })).values());
     }
 
 }
