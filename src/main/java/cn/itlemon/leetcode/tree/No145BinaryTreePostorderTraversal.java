@@ -1,6 +1,8 @@
 package cn.itlemon.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -36,7 +38,7 @@ public class No145BinaryTreePostorderTraversal {
     }
 
     /**
-     * 迭代法：O(n)
+     * 迭代法：O(n)，常规写法，左右根
      *
      * @param root 根节点
      * @return 遍历后的列表
@@ -61,6 +63,28 @@ public class No145BinaryTreePostorderTraversal {
             }
         }
         return result;
+    }
+
+    /**
+     * 技巧迭代法：O(n)，根右左
+     *
+     * @param root 根节点
+     * @return 遍历后的列表
+     */
+    public List<Integer> postorderTraversal3(TreeNode root) {
+        // 设置一个双端队列逆序保存数据，这样出来的时候就是正序
+        Deque<Integer> queue = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                queue.offerFirst(root.val);
+                stack.push(root);
+                root = root.right;
+            }
+            root = stack.pop();
+            root = root.left;
+        }
+        return new ArrayList<>(queue);
     }
 
 }
