@@ -1,7 +1,10 @@
 package cn.itlemon.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 import cn.itlemon.leetcode.model.Node;
 
@@ -33,5 +36,30 @@ public class No589NaryTreePreorderTraversal {
             }
         }
     }
+
+    /**
+     * 迭代法：O(n)
+     *
+     * @param root 根节点
+     * @return 遍历后的列表
+     */
+    public List<Integer> preorder2(Node root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            result.add(node.val);
+            for (int i = node.children.size() - 1; i >= 0; i--) {
+                // 从后往前遍历，这样出栈的时候就是从前往后
+                stack.push(node.children.get(i));
+            }
+        }
+        return result;
+    }
+
 
 }
