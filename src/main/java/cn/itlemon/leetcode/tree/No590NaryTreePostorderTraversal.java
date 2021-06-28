@@ -1,6 +1,8 @@
 package cn.itlemon.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 import cn.itlemon.leetcode.model.Node;
@@ -33,8 +35,31 @@ public class No590NaryTreePostorderTraversal {
             for (int i = 0; i < root.children.size(); i++) {
                 helper(root.children.get(i), result);
             }
+            result.add(root.val);
         }
+    }
 
+    /**
+     * 迭代法：O(n)
+     *
+     * @param root 根节点
+     * @return 遍历后的列表
+     */
+    public List<Integer> postorder2(Node root) {
+        LinkedList<Integer> result = new LinkedList<>();
+        if (root == null) {
+            return result;
+        }
+        Deque<Node> stack = new LinkedList<>();
+        stack.addLast(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.removeLast();
+            result.addFirst(node.val);
+            for (Node child : node.children) {
+                stack.addLast(child);
+            }
+        }
+        return result;
     }
 
 }
