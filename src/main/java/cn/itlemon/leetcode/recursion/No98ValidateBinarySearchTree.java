@@ -1,5 +1,8 @@
 package cn.itlemon.leetcode.recursion;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 import cn.itlemon.leetcode.model.TreeNode;
 
 /**
@@ -30,5 +33,28 @@ public class No98ValidateBinarySearchTree {
         return helper(node.left, lower, node.val) && helper(node.right, node.val, upper);
     }
 
-
+    /**
+     * 迭代法，搜索二叉树中序遍历是一个严格递增的数组
+     *
+     * @param root 根节点
+     * @return 是否是有效BST
+     */
+    public boolean isValidBST2(TreeNode root) {
+        // 使用一个栈来暂存遍历结果
+        Deque<Integer> container = new LinkedList<>();
+        Deque<TreeNode> treeNodeStack = new LinkedList<>();
+        while (root != null || !treeNodeStack.isEmpty()) {
+            while (root != null) {
+                treeNodeStack.push(root);
+                root = root.left;
+            }
+            root = treeNodeStack.pop();
+            if (!container.isEmpty() && container.peek() >= root.val) {
+                return false;
+            }
+            container.push(root.val);
+            root = root.right;
+        }
+        return true;
+    }
 }
