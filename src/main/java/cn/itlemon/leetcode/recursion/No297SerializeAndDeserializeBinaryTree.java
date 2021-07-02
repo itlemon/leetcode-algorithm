@@ -1,5 +1,6 @@
 package cn.itlemon.leetcode.recursion;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import cn.itlemon.leetcode.model.TreeNode;
@@ -44,10 +45,8 @@ public class No297SerializeAndDeserializeBinaryTree {
      * @return TreeNode
      */
     public TreeNode deserialize(String data) {
-        LinkedList<String> list = new LinkedList<>();
-        for (String item : data.split(SEP)) {
-            list.addLast(item);
-        }
+        String[] split = data.split(SEP);
+        LinkedList<String> list = new LinkedList<>(Arrays.asList(split));
         return deserialize(list);
     }
 
