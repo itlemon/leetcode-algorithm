@@ -28,29 +28,29 @@ public class No889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
         return buildTreeHelper(pre, 0, pre.length - 1, post, 0, post.length - 1, map);
     }
 
-    private TreeNode buildTreeHelper(int[] preorder, int ps, int pe, int[] postorder, int is, int ie,
+    private TreeNode buildTreeHelper(int[] pre, int ps, int pe, int[] post, int pos, int poe,
             Map<Integer, Integer> map) {
         // 递归终止条件
-        if (pe < ps || ie < is) {
+        if (pe < ps || poe < pos) {
             return null;
         }
 
         // 递归本层次需要做的事情
         // 获取根节点
-        TreeNode root = new TreeNode(preorder[ps]);
+        TreeNode root = new TreeNode(pre[ps]);
         // 获取左子树的根节点在后序遍历序列中的索引
         // 注意这里有个隐含的边界条件需要判断，判断ps+1是否越界
         if (ps + 1 > pe) {
             return root;
         }
-        int leftRootIndex = map.get(preorder[ps + 1]);
+        int leftRootIndex = map.get(pre[ps + 1]);
         // 确定左子树的数量，从而可以从前序遍历中找到左子树和右子树
-        int leftChildTreeNodeNum = leftRootIndex - is + 1;
+        int leftChildTreeNodeNum = leftRootIndex - pos + 1;
 
         // 递归过程
-        root.left = buildTreeHelper(preorder, ps + 1, ps + leftChildTreeNodeNum, postorder, is, leftRootIndex, map);
+        root.left = buildTreeHelper(pre, ps + 1, ps + leftChildTreeNodeNum, post, pos, leftRootIndex, map);
         root.right =
-                buildTreeHelper(preorder, ps + leftChildTreeNodeNum + 1, pe, postorder, leftRootIndex + 1, ie - 1, map);
+                buildTreeHelper(pre, ps + leftChildTreeNodeNum + 1, pe, post, leftRootIndex + 1, poe - 1, map);
         return root;
     }
 
