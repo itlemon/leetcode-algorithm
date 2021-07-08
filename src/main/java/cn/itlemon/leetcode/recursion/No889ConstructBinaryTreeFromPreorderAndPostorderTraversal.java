@@ -39,6 +39,7 @@ public class No889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
         // 获取根节点
         TreeNode root = new TreeNode(preorder[ps]);
         // 获取左子树的根节点在后序遍历序列中的索引
+        // 注意这里有个隐含的边界条件需要判断，判断ps+1是否越界
         if (ps + 1 > pe) {
             return root;
         }
