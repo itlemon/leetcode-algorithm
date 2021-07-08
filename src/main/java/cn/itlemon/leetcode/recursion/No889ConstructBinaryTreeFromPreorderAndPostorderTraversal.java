@@ -21,7 +21,7 @@ public class No889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
      * @return 还原后的二叉树
      */
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>((int) (post.length / 0.75) + 1);
         for (int i = 0; i < post.length; i++) {
             map.put(post[i], i);
         }
