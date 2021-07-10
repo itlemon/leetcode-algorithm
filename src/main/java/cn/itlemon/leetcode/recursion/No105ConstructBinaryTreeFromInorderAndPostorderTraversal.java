@@ -18,27 +18,23 @@ public class No105ConstructBinaryTreeFromInorderAndPostorderTraversal {
         for (int i = 0; i < inorder.length; i++) {
             indexContainer.put(inorder[i], i);
         }
-        return buildTreeHelper(postorder, 0, postorder.length, inorder, 0, inorder.length, indexContainer);
+        return buildTreeHelper(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, indexContainer);
     }
 
-    private TreeNode buildTreeHelper(int[] postorder, int postorderStart, int postorderEnd, int[] inorder,
-            int inorderStart, int inorderEnd,
+    private TreeNode buildTreeHelper(int[] inorder, int is, int ie, int[] postorder, int pos, int poe,
             Map<Integer, Integer> map) {
         // 如果postorder为空，直接返回null
-        if (postorderStart == postorderEnd) {
+        if (ie < is || poe < pos) {
             return null;
         }
         // 获取根节点
-        int rootVal = inorder[inorderEnd - 1];
-        TreeNode root = new TreeNode(rootVal);
-        int rootIndex = map.get(rootVal);
+        TreeNode root = new TreeNode(postorder[poe]);
+        int ri = map.get(postorder[poe]);
         // 获取左子树的节点个数，这样就可以在后序遍历列表中确定左右子树
-        int leftTreeNodeNum = rootIndex - inorderStart;
+        int leftTreeNodeNum = ri - is;
         // 确定左右子树
-        root.left = buildTreeHelper(postorder, postorderStart, postorderStart + leftTreeNodeNum, inorder, inorderStart,
-                rootIndex, map);
-        root.right = buildTreeHelper(postorder, postorderStart + leftTreeNodeNum, postorderEnd - 1, inorder,
-                rootIndex + 1, inorderEnd, map);
+        root.left = buildTreeHelper(inorder, is, ri - 1, postorder, pos, pos + leftTreeNodeNum - 1, map);
+        root.right = buildTreeHelper(inorder, ri + 1, ie, postorder, pos + leftTreeNodeNum, poe - 1, map);
         return root;
     }
 
