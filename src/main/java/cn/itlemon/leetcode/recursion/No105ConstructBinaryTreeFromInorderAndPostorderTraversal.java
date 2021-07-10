@@ -13,6 +13,13 @@ import cn.itlemon.leetcode.model.TreeNode;
  */
 public class No105ConstructBinaryTreeFromInorderAndPostorderTraversal {
 
+    /**
+     * 递归解法
+     *
+     * @param inorder 中序遍历序列
+     * @param postorder 后序遍历序列
+     * @return 还原后的二叉树
+     */
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         Map<Integer, Integer> indexContainer = new HashMap<>((int) (inorder.length / 0.75) + 1);
         for (int i = 0; i < inorder.length; i++) {
