@@ -1,4 +1,4 @@
-package cn.itlemon.leetcode.recursion;
+package cn.itlemon.leetcode.recursion.backtracking;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
