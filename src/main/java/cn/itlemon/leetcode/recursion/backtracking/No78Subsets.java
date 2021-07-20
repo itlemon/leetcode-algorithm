@@ -23,4 +23,8 @@ public class No78Subsets {
         return backTrack(nums);
     }
 
+    private List<List<Integer>> backTrack(int[] nums) {
+        return null;
+    }
+
 }
