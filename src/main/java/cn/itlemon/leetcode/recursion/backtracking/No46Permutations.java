@@ -22,14 +22,13 @@ public class No46Permutations {
     public List<List<Integer>> permute(int[] nums) {
         // 保存路径结果
         List<List<Integer>> result = new ArrayList<>();
-        int length = nums.length;
         if (nums.length == 0) {
             return result;
         }
         // 记录路径
         Deque<Integer> track = new LinkedList<>();
         // 记录使用过的元素
-        boolean[] used = new boolean[length];
+        boolean[] used = new boolean[nums.length];
         backtracking(nums, used, track, result);
         return result;
     }
