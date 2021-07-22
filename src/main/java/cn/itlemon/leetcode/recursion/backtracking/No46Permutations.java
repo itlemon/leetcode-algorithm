@@ -23,27 +23,27 @@ public class No46Permutations {
         // 保存路径结果
         List<List<Integer>> result = new ArrayList<>();
         int length = nums.length;
-        if (length == 0) {
+        if (nums.length == 0) {
             return result;
         }
         // 记录路径
         Deque<Integer> track = new LinkedList<>();
         // 记录使用过的元素
         boolean[] used = new boolean[length];
-        backtracking(nums, length, 0, used, track, result);
+        backtracking(nums, used, track, result);
         return result;
     }
 
-    private void backtracking(int[] nums, int length, int depth, boolean[] used, Deque<Integer> track,
+    private void backtracking(int[] nums, boolean[] used, Deque<Integer> track,
             List<List<Integer>> result) {
         // 触发结束条件
-        if (depth == length) {
+        if (track.size() == nums.length) {
             result.add(new ArrayList<>(track));
             return;
         }
 
         // 回溯的核心部分
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             // 排除已用的元素
             if (used[i]) {
                 continue;
@@ -52,7 +52,7 @@ public class No46Permutations {
             track.addLast(nums[i]);
             used[i] = true;
             // 递归
-            backtracking(nums, length, depth + 1, used, track, result);
+            backtracking(nums, used, track, result);
             // 撤销选择
             track.removeLast();
             used[i] = false;
