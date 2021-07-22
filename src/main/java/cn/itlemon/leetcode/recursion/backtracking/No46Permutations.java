@@ -49,11 +49,13 @@ public class No46Permutations {
             }
             // 做选择
             track.addLast(nums[i]);
+            // 标记当前元素已经被选择，相当于从选择列表中移除了
             used[i] = true;
             // 递归
             backtracking(nums, used, track, result);
             // 撤销选择
             track.removeLast();
+            // 标记当前元素撤销选择，相当于恢复到了选择列表中
             used[i] = false;
         }
 
