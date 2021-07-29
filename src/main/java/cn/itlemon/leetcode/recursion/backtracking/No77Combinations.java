@@ -28,21 +28,16 @@ public class No77Combinations {
             result.add(new ArrayList<>(Collections.singletonList(1)));
             return result;
         }
-        // 构成数组
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = i + 1;
-        }
         // 定义路径
         Deque<Integer> track = new LinkedList<>();
         // 记录使用过的元素
-        boolean[] used = new boolean[nums.length];
+        boolean[] used = new boolean[n];
         // 回溯
-        backtracking(nums, used, k, track, result);
+        backtracking(n, used, k, track, result);
         return result;
     }
 
-    private void backtracking(int[] nums, boolean[] used, int k, Deque<Integer> track, List<List<Integer>> result) {
+    private void backtracking(int n, boolean[] used, int k, Deque<Integer> track, List<List<Integer>> result) {
         // 触发终止条件
         if (track.size() == k) {
             result.add(new ArrayList<>(track));
@@ -50,16 +45,16 @@ public class No77Combinations {
         }
 
         // 回溯的核心部分
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < n; i++) {
             // 排除已经使用过的元素和小于栈顶的元素
-            if (used[i] || (!track.isEmpty() && nums[i] < track.peekLast())) {
+            if (used[i] || (!track.isEmpty() && i + 1 < track.peekLast())) {
                 continue;
             }
             // 做选择
-            track.addLast(nums[i]);
+            track.addLast(i + 1);
             used[i] = true;
             // 递归
-            backtracking(nums, used, k, track, result);
+            backtracking(n, used, k, track, result);
             // 撤销选择
             track.removeLast();
             used[i] = false;
