@@ -21,13 +21,11 @@ public class No216CombinationSum3 {
         }
         // 定义路径
         Deque<Integer> track = new LinkedList<>();
-        // 定义使用过的元素记录表
-        boolean[] used = new boolean[9];
-        backtracking(k, n, used, track, result);
+        backtracking(k, n, 0, track, result);
         return result;
     }
 
-    private void backtracking(int k, int n, boolean[] used, Deque<Integer> track, List<List<Integer>> result) {
+    private void backtracking(int k, int n, int start, Deque<Integer> track, List<List<Integer>> result) {
         // 触发终止条件
         if (track.size() == k) {
             List<Integer> temp = new ArrayList<>(track);
@@ -38,18 +36,12 @@ public class No216CombinationSum3 {
         }
         
         // 回溯的核心部分
-        for (int i = 0; i < 9; i++) {
-            // 过滤掉已经使用过的元素和小于栈顶的元素
-            if (used[i] || (!track.isEmpty() && i + 1 < track.peekLast())) {
-                continue;
-            }
+        for (int i = start; i < 9; i++) {
             // 做选择
             track.addLast(i + 1);
-            used[i] = true;
-            backtracking(k, n, used, track, result);
+            backtracking(k, n, i + 1, track, result);
             // 撤销选择
             track.removeLast();
-            used[i] = false;
         }
     }
 
