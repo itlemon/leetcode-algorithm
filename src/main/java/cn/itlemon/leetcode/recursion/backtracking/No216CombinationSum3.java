@@ -26,6 +26,11 @@ public class No216CombinationSum3 {
     }
 
     private void backtracking(int k, int n, int start, int sum, Deque<Integer> track, List<List<Integer>> result) {
+        // 剪枝：如何sum已经大于n了，后面就无需再遍历了，也无意义了，因为后面的肯定大于n
+        if (sum > n) {
+            return;
+        }
+
         // 触发终止条件
         if (track.size() == k) {
             if (sum == n) {
