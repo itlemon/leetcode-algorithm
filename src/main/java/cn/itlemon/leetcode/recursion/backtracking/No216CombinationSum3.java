@@ -21,15 +21,14 @@ public class No216CombinationSum3 {
         }
         // 定义路径
         Deque<Integer> track = new LinkedList<>();
-        backtracking(k, n, 0, track, result);
+        backtracking(k, n, 0, 0, track, result);
         return result;
     }
 
-    private void backtracking(int k, int n, int start, Deque<Integer> track, List<List<Integer>> result) {
+    private void backtracking(int k, int n, int start, int sum, Deque<Integer> track, List<List<Integer>> result) {
         // 触发终止条件
         if (track.size() == k) {
-            List<Integer> temp = new ArrayList<>(track);
-            if (sum(temp) == n) {
+            if (sum == n) {
                 result.add(new ArrayList<>(track));
             }
             return;
@@ -39,18 +38,11 @@ public class No216CombinationSum3 {
         for (int i = start; i < 9; i++) {
             // 做选择
             track.addLast(i + 1);
-            backtracking(k, n, i + 1, track, result);
+            sum += i + 1;
+            backtracking(k, n, i + 1, sum, track, result);
             // 撤销选择
             track.removeLast();
+            sum -= i + 1;
         }
     }
-
-    private int sum(List<Integer> track) {
-        int sum = 0;
-        for (Integer item : track) {
-            sum += item;
-        }
-        return sum;
-    }
-
 }
