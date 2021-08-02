@@ -13,6 +13,13 @@ import java.util.List;
  */
 public class No216CombinationSum3 {
 
+    /**
+     * 回溯算法
+     *
+     * @param k k个数
+     * @param n k个数之和
+     * @return 结果集
+     */
     public List<List<Integer>> combinationSum3(int k, int n) {
         // 定义结果集
         List<List<Integer>> result = new ArrayList<>();
@@ -21,7 +28,7 @@ public class No216CombinationSum3 {
         }
         // 定义路径
         Deque<Integer> track = new LinkedList<>();
-        backtracking(k, n, 0, 0, track, result);
+        backtracking(k, n, 1, 0, track, result);
         return result;
     }
 
@@ -38,16 +45,16 @@ public class No216CombinationSum3 {
             }
             return;
         }
-        
+
         // 回溯的核心部分
-        for (int i = start; i < 9; i++) {
+        for (int i = start; i <= 9 - (k - track.size()) + 1; i++) {
             // 做选择
-            track.addLast(i + 1);
-            sum += i + 1;
+            track.addLast(i);
+            sum += i;
             backtracking(k, n, i + 1, sum, track, result);
             // 撤销选择
             track.removeLast();
-            sum -= i + 1;
+            sum -= i;
         }
     }
 }
