@@ -13,18 +13,27 @@ import java.util.List;
  */
 public class No39CombinationSum {
 
+    /**
+     * 回溯算法
+     *
+     * @param candidates 数组
+     * @param target 目标和
+     * @return 组合
+     */
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        // 定义结果集
         List<List<Integer>> result = new ArrayList<>();
-        int length = candidates.length;
-        if (length == 0) {
+        if (candidates.length == 0) {
             return result;
         }
+        // 定义路径
         Deque<Integer> track = new LinkedList<>();
-        backtracking(candidates, 0, length, target, track, result);
+        // 回溯
+        backtracking(candidates, 0, target, track, result);
         return result;
     }
 
-    private void backtracking(int[] candidates, int begin, int length, int target, Deque<Integer> track,
+    private void backtracking(int[] candidates, int begin, int target, Deque<Integer> track,
             List<List<Integer>> result) {
         // 结束条件
         if (target < 0) {
@@ -36,11 +45,11 @@ public class No39CombinationSum {
         }
 
         // 重点理解这里是从begin开始的
-        for (int i = begin; i < length; i++) {
+        for (int i = begin; i < candidates.length; i++) {
             // 做选择
             track.addLast(candidates[i]);
             // 递归:注意：由于每一个元素可以重复使用，下一轮搜索的起点依然是 i，这里非常容易弄错
-            backtracking(candidates, i, length, target - candidates[i], track, result);
+            backtracking(candidates, i, target - candidates[i], track, result);
             // 撤销选择
             track.removeLast();
         }
