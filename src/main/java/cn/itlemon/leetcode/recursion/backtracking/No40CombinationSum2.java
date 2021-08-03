@@ -39,7 +39,7 @@ public class No40CombinationSum2 {
         }
 
         // 回溯的核心部分
-        for (int i = 0; i < candidates.length; i++) {
+        for (int i = start; i < candidates.length; i++) {
             if (used[i] || (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1])) {
                 continue;
             }
