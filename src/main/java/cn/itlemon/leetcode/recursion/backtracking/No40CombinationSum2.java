@@ -14,6 +14,13 @@ import java.util.List;
  */
 public class No40CombinationSum2 {
 
+    /**
+     * 回溯算法
+     *
+     * @param candidates 数组
+     * @param target 目标和
+     * @return 组合列表
+     */
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         // 定义结果集
         List<List<Integer>> result = new ArrayList<>();
@@ -30,9 +37,6 @@ public class No40CombinationSum2 {
     private void backtracking(int[] candidates, boolean[] used, int start, int target, Deque<Integer> track,
             List<List<Integer>> result) {
         // 触发结束条件
-        if (target < 0) {
-            return;
-        }
         if (target == 0) {
             result.add(new ArrayList<>(track));
             return;
@@ -40,7 +44,12 @@ public class No40CombinationSum2 {
 
         // 回溯的核心部分
         for (int i = start; i < candidates.length; i++) {
-            if (used[i] || (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1])) {
+            // 这里需要剪枝：因为candidate有序，如果target - candidate都小于0了，那么后面肯定都是小于0，所以无需遍历
+            if (target - candidates[i] < 0) {
+                break;
+            }
+
+            if (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1]) {
                 continue;
             }
             // 做选择
@@ -53,11 +62,4 @@ public class No40CombinationSum2 {
             used[i] = false;
         }
     }
-
-    public static void main(String[] args) {
-        int[] candidates = {1, 1, 2, 5, 6, 7, 10};
-        int target = 8;
-        System.out.println(new No40CombinationSum2().combinationSum2(candidates, target));
-    }
-
 }
