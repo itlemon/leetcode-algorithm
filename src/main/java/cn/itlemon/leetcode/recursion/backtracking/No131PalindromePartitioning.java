@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class No131PalindromePartitioning {
 
+    /**
+     * 回溯
+     *
+     * @param s 字符串
+     * @return 回文子串列表
+     */
     public List<List<String>> partition(String s) {
         // 定义结果集
         List<List<String>> result = new ArrayList<>();
@@ -47,7 +53,7 @@ public class No131PalindromePartitioning {
             // 递归
             backtracking(chars, i + 1, track, result);
             // 撤销选择
-            String s = track.removeLast();
+            track.removeLast();
         }
     }
 
