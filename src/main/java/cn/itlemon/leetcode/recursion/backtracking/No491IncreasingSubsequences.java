@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class No491IncreasingSubsequences {
 
+    /**
+     * 回溯
+     *
+     * @param nums 数组
+     * @return 递增子序列列表
+     */
     public List<List<Integer>> findSubsequences(int[] nums) {
         // 定义结果集
         List<List<Integer>> result = new ArrayList<>();
