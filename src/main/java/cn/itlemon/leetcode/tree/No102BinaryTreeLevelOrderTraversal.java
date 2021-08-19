@@ -49,4 +49,44 @@ public class No102BinaryTreeLevelOrderTraversal {
         return result;
     }
 
+    /**
+     * DFS
+     *
+     * @param root 根节点
+     * @return 遍历结果
+     */
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        dfs(1, root, result);
+        return result;
+    }
+
+    /**
+     * 深度优先搜索
+     *
+     * @param depth 深度
+     * @param root 根节点
+     * @param result 结果集
+     */
+    private void dfs(int depth, TreeNode root, List<List<Integer>> result) {
+        // 当结果集内部子列表个数不及深度的时候，添加一个空列表到结果集
+        if (result.size() < depth) {
+            result.add(new ArrayList<>());
+        }
+
+        // 做本层的事情
+        result.get(depth - 1).add(root.val);
+
+        // 递归
+        if (root.left != null) {
+            dfs(depth + 1, root.left, result);
+        }
+        if (root.right != null) {
+            dfs(depth + 1, root.right, result);
+        }
+    }
+
 }
