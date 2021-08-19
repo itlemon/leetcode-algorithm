@@ -24,6 +24,11 @@ public class No22GenerateParentheses {
             return;
         }
 
+        // 剪枝
+        if (left < right) {
+            return;
+        }
+
         // 本层要做的事情及递归
         if (left < max) {
             helper(s + "(", left + 1, right, max, result);
