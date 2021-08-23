@@ -87,4 +87,30 @@ public class No322CoinChange {
         return memo.get(amount);
     }
 
+    /**
+     * DP
+     *
+     * @param coins 面值
+     * @param amount 总金额
+     * @return 最少硬币个数
+     */
+    public int coinChange3(int[] coins, int amount) {
+        // 定义dp数组，索引为0 ~ amount，值为最少硬币个数
+        int[] dp = new int[amount + 1];
+        for (int i = 1; i < dp.length; i++) {
+            // 这里除0索引外，其他的值都设置为amount + 1，这已经是最大值了，无需设置Integer.MAX_VALUE
+            dp[i] = amount + 1;
+        }
+        // base case就是dp[0] = 0
+        for (int i = 0; i < dp.length; i++) {
+            for (int coin : coins) {
+                if (i - coin < 0) {
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+            }
+        }
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
+    }
+
 }
