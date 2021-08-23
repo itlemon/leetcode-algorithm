@@ -54,4 +54,52 @@ public class No509FibonacciNumber {
         return memo[n];
     }
 
+    /**
+     * DP
+     *
+     * @param n 数值
+     * @return 数值
+     */
+    public int fib3(int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+
+        // 定义dp数组
+        int[] dp = new int[n + 1];
+
+        // base case
+        dp[1] = 1;
+        dp[2] = 1;
+
+        // 递推遍历
+        for (int i = 3; i < n + 1; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        // 返回结果
+        return dp[n];
+    }
+
+    /**
+     * 优化后的DP
+     *
+     * @param n 数值
+     * @return 数值
+     */
+    public int fib4(int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+
+        int prev = 1, curr = 1;
+        for (int i = 3; i < n + 1; i++) {
+            int sum = prev + curr;
+            prev = curr;
+            curr = sum;
+        }
+
+        return curr;
+    }
+
 }
