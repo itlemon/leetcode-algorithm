@@ -18,10 +18,10 @@ public class No200NumberOfIslands {
         // 定义结果
         int result = 0;
         // 循环遍历
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == '1') {
-                    traverse(grid, i, j);
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                if (grid[r][c] == '1') {
+                    traverse(grid, r, c);
                     result++;
                 }
             }
