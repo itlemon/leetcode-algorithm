@@ -21,7 +21,7 @@ public class No200NumberOfIslands {
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == '1') {
-                    traverse(grid, r, c);
+                    dfs(grid, r, c);
                     result++;
                 }
             }
@@ -36,7 +36,7 @@ public class No200NumberOfIslands {
      * @param r 行坐标
      * @param c 列坐标
      */
-    private void traverse(char[][] grid, int r, int c) {
+    private void dfs(char[][] grid, int r, int c) {
         // 触发终止条件：判断当前遍历的格子是否在网格内
         if (!isInGrid(grid, r, c)) {
             return;
@@ -52,10 +52,10 @@ public class No200NumberOfIslands {
         grid[r][c] = '2';
 
         // 递归访问上、下、左、右四个相邻格子
-        traverse(grid, r - 1, c);
-        traverse(grid, r + 1, c);
-        traverse(grid, r, c - 1);
-        traverse(grid, r, c + 1);
+        dfs(grid, r - 1, c);
+        dfs(grid, r + 1, c);
+        dfs(grid, r, c - 1);
+        dfs(grid, r, c + 1);
     }
 
     /**
