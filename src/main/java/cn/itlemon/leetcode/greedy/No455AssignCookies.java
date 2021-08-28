@@ -42,4 +42,36 @@ public class No455AssignCookies {
         return result;
     }
 
+    /**
+     * 贪心算法：大饼干先喂饱大胃口的，时间复杂度在于排序O(nlogn)
+     *
+     * @param g 小孩胃口
+     * @param s 饼干
+     * @return 满足的小孩人数
+     */
+    public int findContentChildren2(int[] g, int[] s) {
+        // 从小到大排序
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        // 定义结果
+        int result = 0;
+
+        // 定义饼干索引，从最后一个开始
+        int index = s.length - 1;
+
+        // 这里是遍历小孩数组还是饼干数组有讲究，一不留神就错了
+        // 小孩子胃口和饼干从小到大排成一排，我们让最后一个小孩出出来选择一个最大的饼干，问他是否满意，如果满意，则他拿了使他满意的最大的一块饼干，
+        // 如果他不满意，说明这些饼干中没有能使他满意的了，直接问倒数第二个小孩，让他挑一个最大的能使他满意的，这么分析过来，我们就知道我们应该遍历
+        // 小孩的胃口数组，然后让其拿最大的那一块饼干，直到遍历完所有的小孩或者饼干分完为止。
+        for (int i = g.length - 1; i >= 0; i--) {
+            if (index >= 0 && s[index] >= g[i]) {
+                // 说明当前饼干满足了当前这个小孩
+                result++;
+                index--;
+            }
+        }
+        return result;
+    }
+
 }
