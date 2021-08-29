@@ -16,8 +16,8 @@ public class No376WiggleSubsequence {
      */
     public int wiggleMaxLength(int[] nums) {
         int length = nums.length;
-        // 长度小于2（等于2的还不能确定，因为有可能两个元素一样）的数组直接就是摆动数组
-        if (length < 2) {
+        // 长度小于等于1（等于2的还不能确定，因为有可能两个元素一样）的数组直接就是摆动数组
+        if (length <= 1) {
             return length;
         }
 
