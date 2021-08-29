@@ -12,7 +12,7 @@ public class No376WiggleSubsequence {
      * 记录起伏
      *
      * @param nums 原始数组
-     * @return 最长摆动子数组
+     * @return 最长摆动子数组长度
      */
     public int wiggleMaxLength(int[] nums) {
         int length = nums.length;
@@ -37,6 +37,16 @@ public class No376WiggleSubsequence {
         }
 
         return Math.max(asc, desc);
+    }
+
+    /**
+     * 贪心算法
+     *
+     * @param nums 数组
+     * @return 最长摆动子数组长度
+     */
+    public int wiggleMaxLength2(int[] nums) {
+        return 0;
     }
 
 }
