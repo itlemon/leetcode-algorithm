@@ -40,13 +40,33 @@ public class No376WiggleSubsequence {
     }
 
     /**
-     * 贪心算法
+     * 贪心算法：删除单调递增或者递减路径上的点，保留路径上两个端点
      *
      * @param nums 数组
      * @return 最长摆动子数组长度
      */
     public int wiggleMaxLength2(int[] nums) {
-        return 0;
+        int length = nums.length;
+        // 长度小于等于1（等于2的还不能确定，因为有可能两个元素一样）的数组直接就是摆动数组
+        if (length <= 1) {
+            return length;
+        }
+
+        // 定义当前差值和前一对差值
+        int currDiff = 0;
+        int preDiff = 0;
+        // 定义结果，记录峰值个数，默认序列最右侧有一个峰值
+        int result = 1;
+        for (int i = 0; i < length - 1; i++) {
+            currDiff = nums[i + 1] - nums[i];
+            if ((currDiff > 0 && preDiff <= 0) || (currDiff < 0 && preDiff >= 0)) {
+                // 出现峰值
+                result++;
+                preDiff = currDiff;
+            }
+        }
+
+        return result;
     }
 
 }
