@@ -76,7 +76,7 @@ public class No827MakingALargeIsland {
      */
     private Set<Integer> findNeighbourIsland(int[][] grid, int r, int c) {
         Set<Integer> islandIndexSet = new HashSet<>();
-        // 在网关内，且为陆地，只要不为0就是陆地，因为岛屿之前被遍历过，都被修改为了大于等于2以上的数值
+        // 在网格内，且为陆地，只要不为0就是陆地，因为岛屿之前被遍历过，都被修改为了大于等于2以上的数值
         if (isInGrid(grid, r - 1, c) && grid[r - 1][c] != 0) {
             islandIndexSet.add(grid[r - 1][c]);
         }
@@ -129,5 +129,4 @@ public class No827MakingALargeIsland {
         return r >= 0 && r < grid.length
                 && c >= 0 && c < grid[0].length;
     }
-
 }
