@@ -15,18 +15,13 @@ public class No122BestTimeToBuyAndSellStock2 {
      * @return 最大利润
      */
     public int maxProfit(int[] prices) {
-        int length = prices.length;
-        if (length <= 1) {
-            return 0;
-        }
-
         // 定义结果
         int result = 0;
         int sum = 0;
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < prices.length - 1; i++) {
             if (prices[i] <= prices[i + 1]) {
                 sum += (prices[i + 1] - prices[i]);
-                if (i == length - 2) {
+                if (i == prices.length - 2) {
                     // 说明遍历到了最后
                     result += sum;
                 }
@@ -35,6 +30,15 @@ public class No122BestTimeToBuyAndSellStock2 {
                 result += sum;
                 sum = 0;
             }
+        }
+        return result;
+    }
+
+    public int maxProfit2(int[] prices) {
+        // 定义结果
+        int result = 0;
+        for (int i = 1; i < prices.length; i++) {
+            result += Math.max(prices[i] - prices[i - 1], 0);
         }
         return result;
     }
